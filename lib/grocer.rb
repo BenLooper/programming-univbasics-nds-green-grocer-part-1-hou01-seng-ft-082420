@@ -26,6 +26,7 @@ def consolidate_cart(cart)
         checkout_cart.append shopping_cart_hash
       end    
     else  
+      checkout_list.append shopping_cart_hash[:item]
       shopping_cart_hash[:count] = 1
       checkout_cart.append shopping_cart_hash
     end
