@@ -1,17 +1,35 @@
-def find_item_by_name_in_collection(name, collection)
-  # Implement me first!
-  #
-  # Consult README for inputs and outputs
+require 'pry'
 
+def find_item_by_name_in_collection(name, collection)
+  collection.each do |item_hash|
+    if item_hash.value? name
+      return item_hash
+    end
+  end
+  return nil
 end
 
 def consolidate_cart(cart)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This returns a new Array that represents the cart. Don't merely
-  # change `cart` (i.e. mutate) it. It's easier to return a new thing.
-
-end
-
-
   
+  checkout_list = []
+  consolidated_cart = cart.each_with_object([]) do |shopping_cart_hash, checkout_cart|
+    unless checkout_cart == [] 
+      if checkout_list.include? shopping_cart_hash[:item]
+        checkout_cart.each do |checkout_cart_hash|
+          if checkout_cart_hash[:item] == shopping_cart_hash[:item]
+             checkout_cart_hash[:count] += 1
+          end 
+        end 
+      else 
+        checkout_list.append shopping_cart_hash[:item]
+        shopping_cart_hash[:count] = 1
+        checkout_cart.append shopping_cart_hash
+      end    
+    else  
+      checkout_list.append shopping_cart_hash[:item]
+      shopping_cart_hash[:count] = 1
+      checkout_cart.append shopping_cart_hash
+    end
+  end 
+  consolidated_cart
+end
