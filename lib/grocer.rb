@@ -31,6 +31,5 @@ def consolidate_cart(cart)
       checkout_cart.append shopping_cart_hash
     end
   end 
-  binding.pry 
   consolidated_cart
 end
