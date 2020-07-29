@@ -14,7 +14,7 @@ def consolidate_cart(cart)
   checkout_list = []
   consolidated_cart = cart.each_with_object([]) do |shopping_cart_hash, checkout_cart|
     unless checkout_cart == [] 
-      if checkout_list[shopping_cart_hash[:item]]
+      if checkout_list.[shopping_cart_hash[:item]]
         binding.pry
       end 
       checkout_list.append shopping_cart_hash[:item]
