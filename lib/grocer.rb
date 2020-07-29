@@ -15,17 +15,16 @@ def consolidate_cart(cart)
   consolidated_cart = cart.each_with_object([]) do |shopping_cart_hash, checkout_cart|
     unless checkout_cart == [] 
       if checkout_list.include? shopping_cart_hash[:item]
-        
-      end 
-      checkout_list.append shopping_cart_hash[:item]
-      checkout_cart.each do |checkout_cart_hash|
+        checkout_cart.each do |checkout_cart_hash|
           if checkout_cart_hash[:item] == shopping_cart_hash[:item]
              checkout_cart_hash[:count] += 1
-          elsif 
-            shopping_cart_hash[:count] = 1
-            checkout_cart.append shopping_cart_hash
-          end
-      end
+          end 
+        end 
+      else 
+        checkout_list.append shopping_cart_hash[:item]
+        shopping_cart_hash[:count] = 1
+        checkout_cart.append shopping_cart_hash
+      end    
     else  
       shopping_cart_hash[:count] = 1
       checkout_cart.append shopping_cart_hash
